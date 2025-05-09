@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Animation</title>
+    <!-- Highlight.js styles for code colouring -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <!-- Local styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="infoBtn" title="Keyboard Shortcuts">i</button>
+
+    <!-- Custom Info Popup Modal -->
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="closeInfoModalBtn">&times;</span>
+        <h2>Keyboard Shortcuts & App Info</h2>
+        
+        <h3>About This App</h3>
+        <p>This application allows you to create smooth, animated visualizations of your code. Simply paste your code, choose your animation speed, and watch it scroll. You can also record and download a video of the animation.</p>
+        
+        <h3>Keyboard Shortcuts</h3>
+        <p><strong>G:</strong> Start animation in fullscreen</p>
+        <p><strong>R:</strong> Restart animation</p>
+        <p><strong>F:</strong> Toggle fullscreen</p>
+      </div>
+    </div>
+
+    <!-- filename bar -->
+    <header class="title-bar" id="titleBar">code.js</header>
+
+    <!-- Code Input Area -->
+    <section class="code-input-section">
+      <textarea id="codeInput" placeholder="Paste your code here to animate..."></textarea>
+      <button id="renderCodeBtn" class="control-button">Load Code for Animation</button>
+    </section>
+
+    <!-- code viewer -->
+    <main class="viewer" id="viewer">
+      <pre><code id="codeBlock" class="language-javascript">// Code will appear here after you paste it above and click 'Load Code'</code></pre>
+    </main>
+
+    <!-- controls -->
+    <section class="controls">
+      <button id="startBtn">Start Animation</button>
+      <button id="stopBtn" disabled>Stop</button>
+
+      <label for="speedSlider" class="speed-label">Speed:</label>
+      <input
+        id="speedSlider"
+        type="range"
+        min="20"
+        max="600"
+        value="100"
+        step="10"
+      />
+      <span id="speedValue">100&nbsp;px/s</span>
+
+      <div class="download-section">
+        <button id="downloadBtn">Download</button>
+        <progress id="progressBar" class="progress" value="0" max="100"></progress>
+      </div>
+    </section>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Main application script -->
+    <script src="app.js"></script>
+  </body>
+</html> 

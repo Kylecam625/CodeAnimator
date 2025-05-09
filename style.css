@@ -1,0 +1,345 @@
+/* Modern dark themed background */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Fira Code", "Consolas", monospace;
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%); /* Darker slate gradient */
+  color: #e2e8f0; /* Lighter text for dark background */
+  overflow: hidden;
+}
+
+/* Title bar */
+.title-bar {
+  width: 80%;
+  max-width: 1000px;
+  padding: 15px 25px; /* Increased padding */
+  background: #1a202c; /* Darker, more solid background */
+  /* backdrop-filter: blur(6px); Removing blur for a cleaner look with solid bg */
+  border-radius: 10px 10px 0 0; /* Slightly larger radius */
+  font-weight: 600; /* Adjusted font-weight */
+  font-size: 1.1em; /* Slightly larger font size */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  color: #cbd5e0; /* Slightly adjusted text color for the new background */
+  text-align: center; /* Center the text */
+  border-bottom: 1px solid #2d3748; /* Add a subtle separator line */
+}
+
+/* Code Input Section */
+.code-input-section {
+  width: 80%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+#codeInput {
+  width: 100%;
+  min-height: 150px;
+  background-color: #1a202c; /* Darker than viewer for input distinction */
+  color: #e2e8f0;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+  padding: 15px;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+#codeInput::placeholder {
+  color: #718096;
+}
+
+/* Control bar visible in normal mode */
+.controls {
+  width: 80%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 24px;
+  flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+}
+
+/* Code viewer area */
+.viewer {
+  width: 80%;
+  max-width: 1000px;
+  flex: 1;
+  overflow: hidden; /* we control scrollTop via JS */
+  background: #282c34;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); /* Softer shadow */
+}
+
+pre {
+  margin: 0;
+  padding: 24px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+code {
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* Controls */
+.controls button,
+#renderCodeBtn { /* This selector group is for #renderCodeBtn - will be separated */
+  background-color: #14b8a6; /* Vibrant Teal for Load Code button */
+  border: none;
+  color: #ffffff; /* White text */
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 6px; /* Slightly more rounded */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  font-weight: 500;
+}
+
+/* Specific styles for #renderCodeBtn (Load Code) */
+#renderCodeBtn:hover:not(:disabled) {
+  background-color: #0d9488; /* Darker Teal on hover */
+}
+
+#renderCodeBtn:active:not(:disabled) {
+  background-color: #0f766e; /* Even Darker Teal on active */
+  transform: translateY(1px);
+}
+
+#renderCodeBtn:disabled { /* Though #renderCodeBtn is not typically disabled with current logic */
+  background-color: #334155;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Styles for Bottom Control Buttons (.controls button) */
+.controls button {
+  background-color: transparent;
+  border: 2px solid #526a8b; /* Cool Gray/Blue Outline */
+  color: #8ba1c0; /* Lighter text to match outline feel */
+  padding: 8px 16px; /* Adjusted padding for outline style */
+  font-size: 15px; /* Slightly smaller font for subtlety */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.1s ease;
+  font-weight: 500;
+}
+
+/* #renderCodeBtn hover is now separate */
+.controls button:hover:not(:disabled) { /* Keep this for .controls button */
+  background-color: rgba(82, 106, 139, 0.15); /* Very subtle fill on hover */
+  border-color: #7992b3;
+  color: #a8c0de;
+}
+
+/* #renderCodeBtn active is now separate */
+.controls button:active:not(:disabled) { /* Keep this for .controls button */
+  background-color: rgba(82, 106, 139, 0.25); /* Slightly more opaque fill */
+  border-color: #8ba1c0;
+  transform: translateY(1px);
+}
+
+/* #renderCodeBtn disabled is now separate */
+.controls button:disabled { /* Keep this for .controls button */
+  background-color: transparent;
+  border-color: #4a5568; /* Muted border for disabled */
+  cursor: not-allowed;
+  color: #6b7f99; /* Muted text for disabled */
+}
+
+.speed-label {
+  font-size: 14px;
+  color: #a0aec0; /* Subtler label color */
+}
+
+#speedSlider {
+  flex: 1;
+}
+
+#speedValue {
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Scrollbar hidden inside viewer for cleaner look */
+.viewer::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  code {
+    font-size: 16px;
+  }
+  .controls button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  #speedValue {
+    min-width: 60px;
+  }
+}
+
+#progressBar,
+.progress {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #444;
+}
+
+/* WebKit */
+.progress::-webkit-progress-bar {
+  background-color: #444;
+  border-radius: 5px;
+}
+
+.progress::-webkit-progress-value {
+  background-color: #14b8a6; /* Teal to match primary button */
+  border-radius: 5px;
+  transition: width 0.1s linear;
+}
+
+/* Firefox */
+.progress::-moz-progress-bar {
+  background-color: #14b8a6; /* Teal to match primary button */
+  border-radius: 5px;
+  transition: width 0.1s linear;
+}
+
+/* Styling for individual controls if needed */
+.controls button,
+.controls .speed-control {
+  margin: 5px;
+}
+
+#infoBtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other content */
+  background-color: rgba(45, 55, 72, 0.8); /* Darker, semi-transparent */
+  color: #e2e8f0; /* Light text */
+  border: 1px solid #4a5568;
+  /* Keep circular and size, but remove margin-left as it's positioned absolutely */
+  margin-left: 0;
+}
+
+#infoBtn:hover {
+  background-color: rgba(74, 85, 104, 0.9); /* Slightly less transparent on hover */
+}
+
+/* Custom Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Below infoBtn if it overlaps, but above everything else */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity for backdrop */
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #2d3748; /* Dark slate */
+  color: #e2e8f0;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 25px;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  width: 80%; /* Could be more specific, e.g., 400px */
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #90cdf4; /* Light blue for heading */
+}
+
+.modal-content p {
+  line-height: 1.6;
+}
+
+.modal-content p strong {
+  color: #a0aec0; /* Slightly brighter for key emphasis */
+  margin-right: 8px;
+}
+
+.close-button {
+  color: #a0aec0;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #e2e8f0; /* Lighter on hover/focus */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.progress {
+  width: 100%; /* Full width */
+}
+
+/* New styles for download section */
+.download-section {
+  display: flex;
+  align-items: center; /* Vertically align items in the middle */
+  gap: 10px; /* Space between button and progress bar */
+  width: 100%; /* Make the download section take full width to force it to a new line */
+  margin-top: 10px; /* Add some space above the download section */
+}
+
+#downloadBtn { /* Ensure download button doesn't grow excessively */
+  flex-shrink: 0;
+}
+
+.progress {
+  width: 100%; /* Full width initially, but will be constrained by flex container */
+  flex-grow: 1; /* Allow progress bar to take remaining space in the download-section */
+  height: 20px; /* Make progress bar a bit thicker to match button height better */
+}
+
+/* Adjust progress bar height for WebKit and Firefox specifically */
+.progress::-webkit-progress-bar {
+  /* background-color: #444; (already set) */
+  /* border-radius: 5px; (already set) */
+}
+
+.progress::-webkit-progress-value {
+  /* background-color: #14b8a6; (already set) */
+  /* border-radius: 5px; (already set) */
+  /* transition: width 0.1s linear; (already set) */
+}
+
+.progress::-moz-progress-bar {
+  /* background-color: #14b8a6; (already set) */
+  /* border-radius: 5px; (already set) */
+  /* transition: width 0.1s linear; (already set) */
+}
+
+/* Styling for individual controls if needed */
+.controls button,
+.controls .speed-control {
+  margin: 5px;
+} 
