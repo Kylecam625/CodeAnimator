@@ -1,0 +1,118 @@
+/**
+ * Base styles and CSS variables
+ */
+
+:root {
+  /* Colors */
+  --color-bg-primary: #2d3748;
+  --color-bg-secondary: #1a202c;
+  --color-bg-tertiary: #282c34;
+  
+  /* Text colors */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #cbd5e0;
+  --color-text-muted: #a0aec0;
+  
+  /* Theme-specific text colors */
+  --theme-placeholder-dark: rgba(255, 255, 255, 0.5);
+  --theme-placeholder-light: rgba(0, 0, 0, 0.5);
+  
+  /* Border colors */
+  --color-border: #2d3748;
+  --color-border-light: #4a5568;
+  
+  /* Accent colors */
+  --color-accent: #14b8a6;
+  --color-accent-hover: #0d9488;
+  --color-accent-active: #0f766e;
+  
+  /* Control colors */
+  --color-control-border: #526a8b;
+  --color-control-text: #8ba1c0;
+  --color-control-hover-border: #7992b3;
+  --color-control-hover-text: #a8c0de;
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  
+  /* Spacing */
+  --spacing-sm: 8px;
+  --spacing-md: 15px;
+  --spacing-lg: 24px;
+  
+  /* Sizes */
+  --content-width: 80%;
+  --content-max-width: 1000px;
+  
+  /* Border radius */
+  --radius-sm: 5px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Fira Code", "Consolas", monospace;
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+/* Typography */
+h2 {
+  margin-top: 0;
+  color: #90cdf4;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Common element styles */
+pre {
+  margin: 0;
+  padding: var(--spacing-lg);
+  box-sizing: border-box;
+  min-height: 100%;
+  background: transparent;
+  border-radius: var(--radius-lg);
+}
+
+code {
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre;
+  background: transparent;
+  padding: 0;
+  border-radius: var(--radius-lg);
+}
+
+/* Theme-specific text colors for placeholder */
+.theme-atom-one-dark .placeholder-text,
+.theme-monokai .placeholder-text,
+.theme-androidstudio .placeholder-text,
+.theme-dracula .placeholder-text {
+  color: var(--theme-placeholder-dark);
+}
+
+.theme-github .placeholder-text {
+  color: var(--theme-placeholder-light);
+}
+
+/* Title bar text color adjustments for different themes */
+.theme-github .title-bar {
+  color: #24292e;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  code {
+    font-size: 16px;
+  }
+} 

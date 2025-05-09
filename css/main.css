@@ -1,0 +1,19 @@
+/**
+ * Main CSS file
+ * Imports all modular CSS components
+ */
+
+/* Import base styles and variables */
+@import 'base.css';
+
+/* Import layout styles */
+@import 'layout.css';
+
+/* Import component styles */
+@import 'components.css';
+
+/* Import modal styles */
+@import 'modal.css';
+
+/* Import progress bar styles */
+@import 'progress.css'; 

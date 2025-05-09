@@ -1,0 +1,40 @@
+/**
+ * Progress bar styles
+ */
+
+/* Progress bar base styles */
+#progressBar,
+.progress {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: #444;
+}
+
+/* Progress bar for download section */
+.progress {
+  width: 100%;
+  flex-grow: 1;
+  height: 20px;
+}
+
+/* WebKit progress bar styles */
+.progress::-webkit-progress-bar {
+  background-color: #444;
+  border-radius: var(--radius-sm);
+}
+
+.progress::-webkit-progress-value {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-sm);
+  transition: width 0.1s linear;
+}
+
+/* Firefox progress bar styles */
+.progress::-moz-progress-bar {
+  background-color: var(--color-accent);
+  border-radius: var(--radius-sm);
+  transition: width 0.1s linear;
+} 

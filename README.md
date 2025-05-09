@@ -1,17 +1,17 @@
-# CodeAnimator
+# Code Animation Tool
 
-A sleek, lightweight web application that transforms static code snippets into smooth, scrolling animations for presentations, tutorials, and educational videos.
-
-![CodeAnimator](https://via.placeholder.com/800x400?text=CodeAnimator+Screenshot)
+A lightweight web application for creating animated code visualizations, perfect for presentations, tutorials, and educational content.
 
 ## ✨ Features
 
-- **Smooth Code Animations:** Automatically scroll through code at adjustable speeds
-- **One-Click Video Export:** Easily export animations as WebM videos
-- **Syntax Highlighting:** Beautiful code highlighting for better readability
-- **Customizable Speed:** Control the animation pace with an intuitive slider
-- **Fullscreen Mode:** Present your code in distraction-free fullscreen with keyboard shortcuts
-- **Clean UI:** Minimal, intuitive interface designed for simplicity
+- **Code Animation**: Smoothly scroll through code for visually appealing presentations
+- **Syntax Highlighting**: Beautiful syntax highlighting with multiple themes (Atom One Dark, GitHub, Monokai, Android Studio, Dracula)
+- **Customizable Speed**: Adjust animation speed to your preference
+- **Fullscreen Mode**: Present your code in distraction-free fullscreen with a blurred background
+- **Editable Filename**: Click the filename to customize it, automatically remembered between sessions
+- **Keyboard Shortcuts**: Control animations with simple keyboard commands
+- **Video Export**: Download animations as videos for sharing or embedding
+- **Responsive Design**: Works great on desktops, tablets, and mobile devices
 
 ## 🚀 Quick Start
 
@@ -19,7 +19,7 @@ A sleek, lightweight web application that transforms static code snippets into s
 2. Paste your code in the input area
 3. Click "Load Code for Animation"
 4. Adjust the animation speed if needed
-5. Click "Start Animation" or press `G` to start in fullscreen
+5. Click the fullscreen button or press `G` to start the animation in fullscreen
 6. Click "Download" to export as a video file
 
 ## ⌨️ Keyboard Shortcuts
@@ -27,6 +27,7 @@ A sleek, lightweight web application that transforms static code snippets into s
 - `G` - Start animation in fullscreen
 - `R` - Restart animation
 - `F` - Toggle fullscreen mode
+- `ESC` - Exit fullscreen mode
 
 ## 💻 Technologies
 
@@ -39,18 +40,61 @@ A sleek, lightweight web application that transforms static code snippets into s
 No installation required! Simply clone the repository and open `index.html` in your browser:
 
 ```bash
-git clone https://github.com/Kylecam625/CodeAnimator.git
-cd CodeAnimator
+git clone https://github.com/Kylecam625/codeanimations.git
+cd codeanimations
 # Open index.html in your browser
 ```
+
+## 📋 Project Structure
+
+```
+codeanimations/
+├── assets/           # Resources and assets
+├── css/              # Stylesheets
+│   ├── base.css      # Base styles and variables
+│   ├── components.css # UI component styles
+│   ├── layout.css    # Layout structure styles
+│   ├── main.css      # CSS entry point
+│   ├── modal.css     # Modal dialog styles
+│   ├── progress.css  # Progress bar styles
+│   └── legacy/       # Legacy CSS (for reference)
+├── js/               # JavaScript files
+│   ├── modules/      # Modular JS components
+│   │   ├── animation.js      # Animation controller
+│   │   ├── codeHandling.js   # Code input and highlighting
+│   │   ├── exporter.js       # Video export functionality
+│   │   ├── modalHandler.js   # Modal dialog controller
+│   │   └── theme.js          # Theme selection and management
+│   ├── legacy/       # Legacy code (for reference)
+│   └── main.js       # Main application entry point
+├── docs/             # Documentation
+├── index.html        # Main HTML file
+├── CHANGELOG.md      # Record of changes
+└── README.md         # This file
+```
+
+## 🆕 Recent Updates
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
+
+- Improved fullscreen mode with blurred background
+- Added editable filenames with persistent storage
+- Multiple syntax highlighting themes
+- Fixed scrolling issues in animation
+- Added better scrollbars for code navigation
+- Ensured code is displayed properly without cutting off content
+
+## 🔮 Coming Soon
+
+- Multiple language support
+- Line numbers option
+- Additional animation effects
+- More themes and customization options
+- Code snippet library
 
 ## 📝 License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🔮 Coming Soon
-
-Watch this space for upcoming features like multiple themes, font customization, line numbers, and more advanced animation options!
 
 ---
 

@@ -175,6 +175,21 @@ code {
   background: transparent;
 }
 
+/* Theme selector styles */
+.theme-label {
+  font-size: 14px;
+  color: #a0aec0;
+}
+
+.theme-selector {
+  background-color: #1a202c;
+  color: #e2e8f0;
+  border: 1px solid #2d3748;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
 /* Responsive tweaks */
 @media (max-width: 768px) {
   code {

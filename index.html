@@ -4,13 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Animation</title>
-    <!-- Highlight.js styles for code colouring -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
-    />
+    <!-- Force pre-load of highlight.js theme -->
+    <link id="hljsTheme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
     <!-- Local styles -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <button id="infoBtn" title="Keyboard Shortcuts">i</button>
@@ -42,7 +39,18 @@
 
     <!-- code viewer -->
     <main class="viewer" id="viewer">
-      <pre><code id="codeBlock" class="language-javascript">// Code will appear here after you paste it above and click 'Load Code'</code></pre>
+      <!-- Scrollable container for code -->
+      <div class="code-scroll-container" id="scrollContainer">
+        <pre><code id="codeBlock" class="language-javascript"></code></pre>
+        <!-- Placeholder will be added by JavaScript -->
+      </div>
+      
+      <!-- Fullscreen button - stays fixed -->
+      <button id="fullscreenBtn" class="fullscreen-btn" title="Enter fullscreen" data-tooltip="Shortcuts: F - Toggle fullscreen, R - Restart, G - Fullscreen & start">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>
+      </button>
     </main>
 
     <!-- controls -->
@@ -61,6 +69,16 @@
       />
       <span id="speedValue">100&nbsp;px/s</span>
 
+      <!-- Theme selector -->
+      <label for="themeSelect" class="theme-label">Theme:</label>
+      <select id="themeSelect" class="theme-selector">
+        <option value="atom-one-dark">Atom One Dark</option>
+        <option value="github">GitHub</option>
+        <option value="monokai">Monokai</option>
+        <option value="androidstudio">Android Studio</option>
+        <option value="dracula">Dracula</option>
+      </select>
+
       <div class="download-section">
         <button id="downloadBtn">Download</button>
         <progress id="progressBar" class="progress" value="0" max="100"></progress>
@@ -68,10 +86,12 @@
     </section>
 
     <!-- Dependencies -->
+    <!-- Highlight.js with explicit version and additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- Main application script -->
-    <script src="app.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html> 

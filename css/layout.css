@@ -1,0 +1,355 @@
+/**
+ * Layout styles for structural elements
+ */
+
+/* Title bar */
+.title-bar {
+  width: var(--content-width);
+  max-width: var(--content-max-width);
+  padding: var(--spacing-md) calc(var(--spacing-md) + 10px);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: background-color 0.3s ease;
+  cursor: text;
+  outline: none;
+  min-height: 1.5em;
+  margin-bottom: var(--spacing-md);
+  position: relative;
+}
+
+/* Editable title hint */
+.title-bar:empty:before {
+  content: 'Click to edit filename';
+  color: var(--color-text-muted);
+  font-style: italic;
+  opacity: 0.7;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+/* Title bar theme-specific colors to match the viewer */
+.theme-atom-one-dark .title-bar {
+  background-color: #282c34; /* Atom One Dark background */
+  border-color: #3e4451;
+}
+
+.theme-github .title-bar {
+  background-color: #f8f8f8; /* GitHub background */
+  border-color: #e1e4e8;
+  color: #24292e; /* Darker text for light theme */
+}
+
+.theme-monokai .title-bar {
+  background-color: #272822; /* Monokai background */
+  border-color: #3e3d32;
+}
+
+.theme-androidstudio .title-bar {
+  background-color: #282b2e; /* Android Studio background */
+  border-color: #3b4045;
+}
+
+.theme-dracula .title-bar {
+  background-color: #282a36; /* Dracula background */
+  border-color: #44475a;
+}
+
+/* Code Input Section */
+.code-input-section {
+  width: var(--content-width);
+  max-width: var(--content-max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: var(--spacing-md) 0;
+}
+
+#codeInput {
+  width: 100%;
+  min-height: 150px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+#codeInput::placeholder {
+  color: #718096;
+}
+
+/* Control bar */
+.controls {
+  width: var(--content-width);
+  max-width: var(--content-max-width);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 24px;
+  flex-wrap: wrap;
+}
+
+/* Code viewer area - base styles */
+.viewer {
+  width: var(--content-width);
+  max-width: var(--content-max-width);
+  flex: 1;
+  overflow: visible; /* Changed from hidden to visible */
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg); 
+  box-shadow: var(--shadow-md);
+  min-height: 200px;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-border);
+}
+
+/* 
+ * Container for the code to allow scrolling without affecting the button 
+ */
+.code-scroll-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto; /* Allow scrolling */
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg); /* Match parent's border radius */
+}
+
+/* Make pre/code fill the container and ensure all content is visible */
+.code-scroll-container pre {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow: visible;
+}
+
+/* Ensure code doesn't overflow horizontally */
+.code-scroll-container code {
+  display: inline-block;
+  min-width: 100%;
+  box-sizing: border-box;
+  white-space: pre-wrap; /* Allow wrapping for long lines */
+  word-break: normal;
+  word-wrap: normal;
+}
+
+/* Fullscreen button - positioned in the top-right of viewer */
+.fullscreen-btn {
+  position: absolute !important; /* Changed from fixed to absolute */
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 100 !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  opacity: 0.8 !important;
+  font-size: 16px !important;
+}
+
+.fullscreen-btn:hover {
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  color: white !important;
+  transform: scale(1.05) !important;
+}
+
+.fullscreen-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: currentColor !important;
+}
+
+/* Light theme version of the fullscreen button */
+.theme-github .fullscreen-btn {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.theme-github .fullscreen-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Theme-specific background colors for viewer 
+   These will be toggled via JavaScript when themes change */
+.viewer.theme-atom-one-dark {
+  background-color: #282c34; /* Atom One Dark background */
+  border-color: #3e4451;
+}
+
+.viewer.theme-github {
+  background-color: #f8f8f8; /* GitHub background */
+  border-color: #e1e4e8;
+}
+
+.viewer.theme-monokai {
+  background-color: #272822; /* Monokai background */
+  border-color: #3e3d32;
+}
+
+.viewer.theme-androidstudio {
+  background-color: #282b2e; /* Android Studio background */
+  border-color: #3b4045;
+}
+
+.viewer.theme-dracula {
+  background-color: #282a36; /* Dracula background */
+  border-color: #44475a;
+}
+
+/* Style for the placeholder text to prevent scrolling */
+.placeholder-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  font-size: 16px;
+}
+
+/* Download section */
+.download-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Scrollbar styling for better visibility */
+.code-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+.code-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.code-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-github .code-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-github .code-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Fullscreen styles */
+.fullscreen-active body {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Apply blur effect to background in fullscreen mode */
+.fullscreen-active::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 90;
+}
+
+/* Hide other elements in fullscreen mode */
+.fullscreen-active .title-bar,
+.fullscreen-active .code-input-section,
+.fullscreen-active .controls,
+.fullscreen-active #infoBtn {
+  display: none !important;
+}
+
+/* Style the viewer in fullscreen mode */
+.fullscreen-active .viewer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 1200px;
+  height: 80vh;
+  max-height: 900px;
+  z-index: 100;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: visible;
+}
+
+/* Position fullscreen button in fullscreen mode */
+.fullscreen-active .fullscreen-btn {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+.fullscreen-active .fullscreen-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: white !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .controls button {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  
+  #speedValue {
+    min-width: 60px;
+  }
+  
+  .placeholder-text {
+    font-size: 14px;
+    width: 90%;
+  }
+  
+  /* Full screen adjustments for mobile */
+  .fullscreen-active .viewer {
+    width: 95%;
+    height: 85vh;
+  }
+  
+  /* Mobile fullscreen button position */
+  .fullscreen-active .fullscreen-btn {
+    top: 10px !important;
+    right: 10px !important;
+  }
+} 
